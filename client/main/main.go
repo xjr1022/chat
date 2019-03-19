@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"project/chatRoom/client/process"
 )
 
 //定义两个变量，一个表示用户id，一个表示用户密码
@@ -14,10 +15,9 @@ var (
 func main() {
 	//接收用户的选择
 	var key int
-	//判断是继续显示主菜单
-	var loop = true
 
-	for loop {
+
+	for true {
 		fmt.Println("----------------欢迎登陆多人聊天系统------------")
 		fmt.Println("\t\t\t 1 登陆聊天室")
 		fmt.Println("\t\t\t 2 注册用户")
@@ -32,12 +32,9 @@ func main() {
 			fmt.Scanf("%d\n", &userId)
 			fmt.Println("请输入用户的密码")
 			fmt.Scanf("%s\n", &userPwd)
-			err := Login(userId, userPwd)
-			if err != nil {
-				fmt.Println("登录失败")
-			} else {
-				fmt.Println("登录成功")
-			}
+			userProcess := &process.UserProcess{}
+			 userProcess.Login(userId, userPwd)
+
 		case 2:
 			fmt.Println("注册用户")
 			fmt.Println("请输入用户id:")
