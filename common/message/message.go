@@ -4,6 +4,7 @@ const (
 	LoginMesType    = "LoginMes"
 	LoginResMesType = "LoginResMes"
 	RegisterMesType = "RegisterMes"
+	RegisterResMesType = "RegisterResMes"
 )
 
 type Message struct {
@@ -11,13 +12,24 @@ type Message struct {
 	Data string `json:"data"`
 }
 
-//定义消息结构体
+//定义登录消息结构体
 type LoginMes struct {
 	UserId   int    `json:"userid"`   //用户id
 	UserPwd  string `json:"userPwd"`  //用户密码
 	UserName string `json:"userName"` //用户名
 }
+//定义登录消息响应结构体
 type LoginResMes struct {
+	Code  int    `json:"code"`  //返回状态码
+	Error string `json:"error"` //返回错误信息
+	OnlineUsersId []int `json:"onlineUsersId"`//保存在线用户id
+}
+//定义注册结构体
+type RegisterMes struct {
+	User User `json:"user"`
+}
+//定义注册响应结构体
+type RegisterResMes struct {
 	Code  int    `json:"code"`  //返回状态码
 	Error string `json:"error"` //返回错误信息
 }

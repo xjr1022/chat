@@ -22,7 +22,7 @@ func (this *PackageOperation)ReadPackage() (mes message.Message,err error){
 	//conn.read 在conn没有被关闭的情况下才会被阻塞，先读取字节长度
 	_,err = this.Conn.Read(this.Buf[:4])
 	if err != nil{
-		fmt.Println("读取数据长度出错,err=",err)
+
 		return
 	}
 	var packageLen uint32

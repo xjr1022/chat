@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"os"
-	"project/chatRoom/client/process"
+	"project/chatRoom/client/controller"
+
 )
 
 //定义两个变量，一个表示用户id，一个表示用户密码
 var (
 	userId  int
 	userPwd string
+	userName string
 )
 
 func main() {
@@ -25,6 +27,7 @@ func main() {
 		fmt.Println("\t\t\t 请选择(1-3):")
 
 		fmt.Scanf("%d\n", &key)
+		userController := &controller.UserController{}
 		switch key {
 		case 1:
 			fmt.Println("登陆聊天室")
@@ -32,8 +35,8 @@ func main() {
 			fmt.Scanf("%d\n", &userId)
 			fmt.Println("请输入用户的密码")
 			fmt.Scanf("%s\n", &userPwd)
-			userProcess := &process.UserProcess{}
-			 userProcess.Login(userId, userPwd)
+
+			userController.Login(userId, userPwd)
 
 		case 2:
 			fmt.Println("注册用户")
@@ -41,9 +44,10 @@ func main() {
 			fmt.Scanf("%d\n", &userId)
 			fmt.Println("请输入用户密码:")
 			fmt.Scanf("%s\n", &userPwd)
-
-			//2. 调用UserProcess，完成注册的请求、
-
+			fmt.Println("请输入用户昵称:")
+			fmt.Scanf("%s\n", &userName)
+			//2. 调用UserController，完成注册的请求、
+			userController.Register(userId,userPwd,userName)
 		case 3:
 			fmt.Println("退出系统")
 			//loop = false

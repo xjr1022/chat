@@ -44,15 +44,16 @@ func (this *Processor)MainProcess(conn net.Conn) (err error){
 
 //给接收的消息分配相应的函数处理
 func (this *Processor)ServerProcessMes(mes *message.Message)(err error){
+	userController:=controller.UserController{
+		Conn:this.Conn,
+	}
 	switch mes.Type {
 	case message.LoginMesType:
 		//处理登录
-		userController:=controller.UserController{
-			Conn:this.Conn,
-		}
+
 		err =   userController.ServerProcessLogin(mes)
 	case message.RegisterMesType:
-
+		err = userController.ServerProcessRegister(mes)
 	default:
 		fmt.Println("消息类型不存在")
 	}
