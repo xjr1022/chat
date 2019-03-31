@@ -5,6 +5,7 @@ const (
 	LoginResMesType = "LoginResMes"
 	RegisterMesType = "RegisterMes"
 	RegisterResMesType = "RegisterResMes"
+	NotifyUserStatusMesType = "NotifyUserStatusMes"
 )
 
 type Message struct {
@@ -22,7 +23,7 @@ type LoginMes struct {
 type LoginResMes struct {
 	Code  int    `json:"code"`  //返回状态码
 	Error string `json:"error"` //返回错误信息
-	OnlineUsersId []int `json:"onlineUsersId"`//保存在线用户id
+	OnlineUsersId []int `json:"onlineUsersId"`//在线用户id
 }
 //定义注册结构体
 type RegisterMes struct {
@@ -33,3 +34,7 @@ type RegisterResMes struct {
 	Code  int    `json:"code"`  //返回状态码
 	Error string `json:"error"` //返回错误信息
 }
+type NotifyUserStatusMes struct {
+	UserId int `json:"userId"` 
+	Status int `json:"status"`
+} 

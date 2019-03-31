@@ -50,8 +50,8 @@ func (this *Processor)ServerProcessMes(mes *message.Message)(err error){
 	switch mes.Type {
 	case message.LoginMesType:
 		//处理登录
-
 		err =   userController.ServerProcessLogin(mes)
+
 	case message.RegisterMesType:
 		err = userController.ServerProcessRegister(mes)
 	default:
