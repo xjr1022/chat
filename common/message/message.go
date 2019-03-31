@@ -8,6 +8,12 @@ const (
 	NotifyUserStatusMesType = "NotifyUserStatusMes"
 )
 
+//用户状态
+const (
+	UserOnline = iota
+	UserOffline
+)
+
 type Message struct {
 	Type string `json:"type"`
 	Data string `json:"data"`

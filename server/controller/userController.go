@@ -17,7 +17,48 @@ type UserController struct {
 
 //通知客户端用户上线
 func (this *UserController) NotifyOthersUserOnline(userId int){
+	//遍历OnlineUsers，然后发送
+	for id,userCont :=range userMg.onlineUsers{
+		if id == userId {
+			continue
+		}
+		//同时用户上线
+		userCont.NotifyUserOnline(userId)
+	}
+}
 
+//根据userId发送上线通知
+func (this *UserController) NotifyUserOnline(userId int){
+	//实例化消息结构体
+	var mes message.Message
+	mes.Type = message.NotifyUserStatusMesType
+	//实例化OnlineMes
+	var notifyUserStatusMes message.NotifyUserStatusMes
+	notifyUserStatusMes.UserId = userId
+	notifyUserStatusMes.Status = message.UserOnline
+
+	//序列化notifyUser
+	data,err:=json.Marshal(notifyUserStatusMes)
+	if err != nil {
+		fmt.Print("notifyUser 序列化失败 err=",err)
+	}
+	mes.Data = string(data)
+
+	data,err = json.Marshal(mes)
+	if err != nil {
+		fmt.Print("notify Mes 序列化失败 err=",_,err )
+		return
+	}
+
+	packOper := &operationData.PackageOperation{
+		Conn:this.Conn,
+	}
+	//发送消息给客户端
+	err = packOper.WritePackage(data)
+	if err != nil {
+		fmt.Print("发送在线消息失败 err=",err)
+		return
+	}
 }
 
 //处理用户登录
