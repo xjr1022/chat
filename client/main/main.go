@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"project/chatRoom/client/controller"
+	"chat/client/controller"
 
 )
 

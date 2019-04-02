@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"project/chatRoom/common/message"
-	"project/chatRoom/common/operationData"
-	"project/chatRoom/server/controller"
+	"chat/common/message"
+	"chat/common/operationData"
+	"chat/server/controller"
 )
 
 type Processor struct {

@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
-	"project/chatRoom/common/message"
+	"chat/common/message"
 )
 //定义该类
 type PackageOperation struct {

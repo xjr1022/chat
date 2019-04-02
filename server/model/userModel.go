@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gomodule/redigo/redis"
-	"project/chatRoom/common/message"
+	"chat/common/message"
 )
 
 //用户模型

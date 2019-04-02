@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"project/chatRoom/client/model"
-	"project/chatRoom/common/message"
-	"project/chatRoom/common/operationData"
+	"chat/client/model"
+	"chat/common/message"
+	"chat/common/operationData"
 )
 
 type UserController struct {

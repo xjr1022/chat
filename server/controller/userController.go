@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
-	"project/chatRoom/common/message"
-	"project/chatRoom/common/operationData"
-	"project/chatRoom/server/model"
+	"chat/common/message"
+	"chat/common/operationData"
+	"chat/server/model"
 )
 
 type UserController struct {

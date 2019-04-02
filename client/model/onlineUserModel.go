@@ -3,7 +3,7 @@ package model
 import (
 	"fmt"
 	"net"
-	"project/chatRoom/common/message"
+	"chat/common/message"
 )
 
 type ConnectUser struct {

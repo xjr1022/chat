@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
-	"project/chatRoom/server/model"
+	"chat/server/model"
 	"time"
 )
 
