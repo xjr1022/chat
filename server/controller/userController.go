@@ -46,7 +46,7 @@ func (this *UserController) NotifyUserOnline(userId int){
 
 	data,err = json.Marshal(mes)
 	if err != nil {
-		fmt.Print("notify Mes 序列化失败 err=",_,err )
+		fmt.Print("notify Mes 序列化失败 err=",err )
 		return
 	}
 
@@ -93,8 +93,13 @@ func (this *UserController)ServerProcessLogin(mes *message.Message)(err error){
 		//到这一步用户已经登录成功，此时就把在线用户放到userManager里
 		this.UserId = loginMes.UserId
 		userMg.AddOnlineUser(this)
+		this.NotifyOthersUserOnline(loginMes.UserId)
 		//将当前在线用户的id放入响应消息里
 		for id,_:= range userMg.onlineUsers{
+			//去掉自身的id
+			if this.UserId==id {
+				continue
+			}
 			loginResMes.OnlineUsersId = append(loginResMes.OnlineUsersId,id)
 		}
 		fmt.Println(user,"登陆成功")

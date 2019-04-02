@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"project/chatRoom/client/model"
 	"project/chatRoom/common/message"
 	"project/chatRoom/common/operationData"
 )
@@ -70,10 +71,13 @@ func (this *UserController)Login(userId int, userPwd string) (err error) {
 		//显示在线用户
 		fmt.Println("当前在线用户列表如下：")
 		for _,v:=range loginResMes.OnlineUsersId {
-			if v ==userId {
-				continue
-			}
 			fmt.Println("用户id：",v)
+			//完成OnlineUsers初始化
+			user:=message.User{
+				UserId:v,
+				UserStatus:message.UserOnline,
+			}
+			model.OnlineUsers[v]=user
 		}
 		fmt.Print("\t\t")
 		//开启一个进程保持和服务器的通讯
