@@ -6,6 +6,7 @@ const (
 	RegisterMesType = "RegisterMes"
 	RegisterResMesType = "RegisterResMes"
 	NotifyUserStatusMesType = "NotifyUserStatusMes"
+	ChatMesType = "ChatMes"
 )
 
 //用户状态
@@ -40,7 +41,13 @@ type RegisterResMes struct {
 	Code  int    `json:"code"`  //返回状态码
 	Error string `json:"error"` //返回错误信息
 }
+//通知用户上线
 type NotifyUserStatusMes struct {
 	UserId int `json:"userId"` 
 	Status int `json:"status"`
 } 
+
+type ChatMes struct {
+	User
+	Content string `json:"content"`
+}

@@ -67,6 +67,12 @@ func (this *UserController)Login(userId int, userPwd string) (err error) {
 	var loginResMes message.LoginResMes
 	err = json.Unmarshal([]byte(mes.Data),&loginResMes)
 	if loginResMes.Code==200 {
+
+		//初始化ConUser
+		model.ConUser.Conn = conn
+		model.ConUser.UserId = userId
+		model.ConUser.UserStatus = message.UserOnline
+
 		fmt.Println("登录成功")
 		//显示在线用户
 		fmt.Println("当前在线用户列表如下：")

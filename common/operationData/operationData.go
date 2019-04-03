@@ -28,11 +28,11 @@ func (this *PackageOperation)ReadPackage() (mes message.Message,err error){
 	var packageLen uint32
 	//转成uint32类型
 	packageLen = binary.BigEndian.Uint32(this.Buf[:4])
-	fmt.Println("接收的数据长度为",packageLen)
+	//fmt.Println("接收的数据长度为",packageLen)
 
 	//读取数据本身
 	n,err := this.Conn.Read(this.Buf[:packageLen])
-	fmt.Println("接收的数据内容为",string(this.Buf[:packageLen]))
+	//fmt.Println("接收的数据内容为",string(this.Buf[:packageLen]))
 	if n!= int(packageLen) || err != nil{
 		return
 	}
@@ -53,14 +53,14 @@ func (this *PackageOperation)WritePackage(data []byte) (err error)  {
 	binary.BigEndian.PutUint32(buf[:4],packageLen)
 	//发送长度
 	n,err :=this.Conn.Write(buf[:4])
-	fmt.Println("发送的数据长度为",string(packageLen))
+	//fmt.Println("发送的数据长度为",string(packageLen))
 	if n!=4 || err!=nil {
 		fmt.Println("conn.write dataLen fail err=",err)
 		return
 	}
 	//发送数据本身
 	n,err = this.Conn.Write(data)
-	fmt.Println("发送的数据内容为",string(data))
+	//fmt.Println("发送的数据内容为",string(data))
 	if n!= int(packageLen) || err != nil{
 		fmt.Println("conn.write data fail err=",err)
 		return

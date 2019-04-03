@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"chat/client/controller"
-
 )
 
 //定义两个变量，一个表示用户id，一个表示用户密码

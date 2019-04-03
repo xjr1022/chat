@@ -47,6 +47,7 @@ func (this *Processor)ServerProcessMes(mes *message.Message)(err error){
 	userController:=controller.UserController{
 		Conn:this.Conn,
 	}
+	chatController :=controller.ChatMesController{}
 	switch mes.Type {
 	case message.LoginMesType:
 		//处理登录
@@ -54,6 +55,8 @@ func (this *Processor)ServerProcessMes(mes *message.Message)(err error){
 
 	case message.RegisterMesType:
 		err = userController.ServerProcessRegister(mes)
+	case message.ChatMesType:
+		chatController.SendGroupMes(mes)
 	default:
 		fmt.Println("消息类型不存在")
 	}

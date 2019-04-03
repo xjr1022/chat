@@ -21,12 +21,17 @@ func ShowMenu() {
 	fmt.Println("请选择(1-4):")
 
 	var key int
-	fmt.Scanf("%d", &key)
+	var content string
+
+	//聊天会经常用到ChatMesController，就定义在外面
+	chaMesCont := ChatMesController{}
+	fmt.Scanf("%d\n", &key)
 	switch key {
 	case 1:
-		fmt.Println("显示在线用户列表")
+		model.OutPutOnlineUser()
 	case 2:
-		fmt.Println("发送消息")
+		fmt.Scanf("%s\n", &content)
+		chaMesCont.SendGroupMes(content)
 	case 3:
 		fmt.Println("信息列表")
 	case 4:
@@ -57,6 +62,8 @@ func ProcessServerMes(conn net.Conn) {
 			json.Unmarshal([]byte(mes.Data), &notyfyMes)
 			//用户客户端在线用户map
 			model.UpdateUserStatus(notyfyMes)
+		case message.ChatMesType:
+			OutPutMes(mes)
 		default:
 			fmt.Print("服务器返回未知信息")
 
